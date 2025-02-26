@@ -1,4 +1,3 @@
-```markdown
 # Medical Image Segmentation Pipeline
 
 This repository provides an end-to-end pipeline for medical image segmentation using deep learning. Implemented in Python with TensorFlow, OpenCV, and other popular libraries, this project includes two Google Colab notebooks—one for training a segmentation model (`train.ipynb`) and one for making predictions (`Prediction.ipynb`). The pipeline is modular and fully customizable, allowing you to integrate your own segmentation models, adjust file paths, and tweak training parameters as needed.
@@ -265,6 +264,3 @@ For a list of changes, updates, and release history, please refer to [CHANGELOG.
 
 This project is licensed under the [MIT License](LICENSE).
 
-```
-
-Place this `README.md` file in the **root directory** of your repository. It will serve as the main documentation page for your project on GitHub, ensuring that users and contributors have clear instructions on setup, usage, and contribution.
