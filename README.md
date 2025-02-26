@@ -47,7 +47,7 @@ Medical_Image_Segmentation_Pipeline/
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/your-username/Medical_Image_Segmentation_Pipeline.git
+   git clone https://github.com/NHMSudara/Medical_Image_Segmentation_Pipeline.git
    cd Medical_Image_Segmentation_Pipeline
    ```
 
