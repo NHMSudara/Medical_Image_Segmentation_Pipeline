@@ -256,7 +256,7 @@ We welcome contributions to improve this project! Please see [CONTRIBUTING.md](C
 
 ## Changelog
 
-For a list of changes, updates, and release history, please refer to [CHANGELOG.md](CHANGELOG.md).
+For a list of changes, updates, and release history, please refer to [CHANGELOG.md](CHANGELOG.md)..
 
 ---
 
