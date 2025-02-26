@@ -1,11 +1,34 @@
+```markdown
 # Medical Image Segmentation Pipeline
 
-This repository provides an end-to-end pipeline for medical image segmentation using deep learning. It is implemented with Python, TensorFlow, OpenCV, and other popular libraries. The project includes two Google Colab notebooks—one for training a segmentation model (`train.ipynb`) and one for making predictions (`Prediction.ipynb`). The pipeline is modular and fully customizable, allowing you to integrate your own segmentation models, adjust file paths, and tweak training parameters as needed.
+This repository provides an end-to-end pipeline for medical image segmentation using deep learning. Implemented in Python with TensorFlow, OpenCV, and other popular libraries, this project includes two Google Colab notebooks—one for training a segmentation model (`train.ipynb`) and one for making predictions (`Prediction.ipynb`). The pipeline is modular and fully customizable, allowing you to integrate your own segmentation models, adjust file paths, and tweak training parameters as needed.
+
+---
 
 ## Repository Structure
 
-Medical_Image_Segmentation_Pipeline/ ├── dataset/ │ ├── images/ # Original training images │ └── masks/ # Corresponding ground truth segmentation masks ├── segmentation_models/ # Model architecture files (e.g., unet.py, your_custom_model.py) ├── input_images/ # Images for prediction/inference ├── predicted_masks/ # Output directory for predicted segmentation masks ├── save_trained_models/ # Directory where trained models are saved ├── train.ipynb # Notebook for data augmentation, model training, and evaluation ├── Prediction.ipynb # Notebook for loading the model and making predictions ├── README.md # Project documentation (this file) ├── LICENSE # MIT License ├── CONTRIBUTING.md # Guidelines for contributing to this project ├── CHANGELOG.md # List of changes for each version ├── ISSUE_TEMPLATE.md # Template for reporting issues └── PULL_REQUEST_TEMPLATE.md # Template for submitting pull requests
+```
+Medical_Image_Segmentation_Pipeline/
+├── .github/
+│   ├── ISSUE_TEMPLATE.md
+│   └── PULL_REQUEST_TEMPLATE.md
+├── dataset/
+│   ├── images/                # Original training images
+│   └── masks/                 # Corresponding ground truth segmentation masks
+├── segmentation_models/       # Model architecture files (e.g., unet.py, my_custom_model.py)
+├── input_images/              # Images for prediction/inference
+├── predicted_masks/           # Output directory for predicted segmentation masks
+├── save_trained_models/       # Directory where trained models are saved
+├── docs/                     # Additional documentation (e.g., config_setup.md)
+├── train.ipynb                # Notebook for data augmentation, model training, and evaluation
+├── Prediction.ipynb           # Notebook for loading the model and making predictions
+├── README.md                  # Project documentation (this file)
+├── LICENSE                    # MIT License
+├── CONTRIBUTING.md            # Guidelines for contributing to this project
+└── CHANGELOG.md               # Documentation of changes and release history
+```
 
+---
 
 ## Requirements
 
@@ -18,6 +41,8 @@ Medical_Image_Segmentation_Pipeline/ ├── dataset/ │ ├── images/ # 
 
 > The notebooks are optimized for running on [Google Colab](https://colab.research.google.com/). Google Drive is used for file storage and management.
 
+---
+
 ## Setup Instructions
 
 1. **Clone the Repository:**
@@ -25,65 +50,221 @@ Medical_Image_Segmentation_Pipeline/ ├── dataset/ │ ├── images/ # 
    ```bash
    git clone https://github.com/your-username/Medical_Image_Segmentation_Pipeline.git
    cd Medical_Image_Segmentation_Pipeline
+   ```
 
-    Google Drive Setup:
-        Place your training dataset in the dataset/ folder:
-            Training images in dataset/images/
-            Corresponding ground truth masks in dataset/masks/
-        For predictions, add your images to the input_images/ folder.
-        The notebooks will mount your Google Drive to access these folders, save trained models, and store predicted masks.
+2. **Google Drive Setup:**
+   - Place your training dataset in the `dataset/` folder:
+     - Training images should go into `dataset/images/`
+     - Corresponding ground truth masks should be placed in `dataset/masks/`
+   - For predictions, add your images to the `input_images/` folder.
+   - The notebooks will mount your Google Drive to access these folders, save trained models, and store predicted masks.
 
-    Open the Notebooks in Google Colab:
-        Run train.ipynb for training.
-        Run Prediction.ipynb for inference.
+3. **Open the Notebooks in Google Colab:**
+   - Run `train.ipynb` for training the model.
+   - Run `Prediction.ipynb` for inference.
 
-Usage
-1. Training the Model (train.ipynb)
+---
 
-    Configuration & File Paths:
-    Set paths and parameters at the start of the notebook. For example:
+## Configuration & File Paths
 
-    MODEL_NAME = "unet"
-    MODEL_DIR = "/content/drive/MyDrive/Medical_Image_Segmentation_Pipeline/segmentation_models"
-    DATASET_PATH = "/content/drive/MyDrive/Medical_Image_Segmentation_Pipeline/dataset"
-    SAVE_MODEL_PATH = "/content/drive/MyDrive/Medical_Image_Segmentation_Pipeline/save_trained_models"
-    INPUT_IMAGE_PATH = "/content/drive/MyDrive/Medical_Image_Segmentation_Pipeline/input_images"
-    PREDICTED_MASK_PATH = "/content/drive/MyDrive/Medical_Image_Segmentation_Pipeline/predicted_masks"
+At the beginning of the notebooks, set paths and parameters according to your directory structure. For example:
 
-    Data Loading & Naming Conventions:
-    Ensure filenames in dataset/images/ and dataset/masks/ match exactly.
+```python
+MODEL_NAME = "unet"
+MODEL_DIR = "/content/drive/MyDrive/Medical_Image_Segmentation_Pipeline/segmentation_models"
+DATASET_PATH = "/content/drive/MyDrive/Medical_Image_Segmentation_Pipeline/dataset"
+SAVE_MODEL_PATH = "/content/drive/MyDrive/Medical_Image_Segmentation_Pipeline/save_trained_models"
+INPUT_IMAGE_PATH = "/content/drive/MyDrive/Medical_Image_Segmentation_Pipeline/input_images"
+PREDICTED_MASK_PATH = "/content/drive/MyDrive/Medical_Image_Segmentation_Pipeline/predicted_masks"
+```
 
-    Data Augmentation & Hyperparameters:
-    Functions like random_flip, random_rotate, and adjust_brightness expand your dataset. Hyperparameters such as IMG_HEIGHT, BATCH_SIZE, and EPOCHS are defined here.
+---
 
-    Custom Model Integration:
-    Add your custom model file (e.g., my_custom_model.py) in segmentation_models/ and update MODEL_NAME in the notebook.
+## Data Loading & Naming Conventions
 
-2. Making Predictions (Prediction.ipynb)
+Ensure that filenames in `dataset/images/` and `dataset/masks/` **match exactly** so that each image pairs correctly with its corresponding mask.
 
-    File Paths & Preprocessing:
-    Set paths for the saved model and input images. A preprocessing function resizes and normalizes images.
+**Example Structure:**
 
-    Prediction & Saving Masks:
-    The notebook loads the trained model, predicts segmentation masks, applies a threshold, resizes to original dimensions, and saves the results.
+```
+dataset/
+├── images/
+│   ├── patient01.png
+│   ├── patient02.png
+│   └── ...
+├── masks/
+│   ├── patient01.png
+│   ├── patient02.png
+│   └── ...
+```
 
-Data Naming Conventions
+**Code Snippet:**
 
-    File Name Matching:
-    Ensure that images in dataset/images/ and their corresponding masks in dataset/masks/ have exactly the same filename.
+```python
+import os
 
-Customization
+IMAGE_DIR = os.path.join(DATASET_PATH, "images")
+MASK_DIR = os.path.join(DATASET_PATH, "masks")
 
-    Model Architecture:
-    Switch or add models by placing your custom model file in segmentation_models/ and updating MODEL_NAME.
-    Data Augmentation and Hyperparameters:
-    Modify augmentation techniques and adjust parameters as needed.
-    File Paths and Environment:
-    Update paths in the notebooks to match your setup.
+# List and sort image files to ensure proper pairing
+img_files = sorted(os.listdir(IMAGE_DIR))
 
-Contributing
+for img_file in img_files:
+    img_path = os.path.join(IMAGE_DIR, img_file)
+    mask_path = os.path.join(MASK_DIR, img_file)  # Filenames must match
+    # Load image and corresponding mask
+```
 
-We welcome contributions! Please see CONTRIBUTING.md for detailed guidelines.
-Changelog
+---
 
-Please see CHANGELOG.md for a list of changes and updates.
+## Data Augmentation & Hyperparameters
+
+To improve model generalization, apply data augmentation techniques such as random flips, rotations, and brightness adjustments.
+
+### Augmentation Functions
+
+```python
+import random
+import cv2
+import numpy as np
+
+def random_flip(image, mask):
+    if random.random() > 0.5:
+        image = cv2.flip(image, 1)
+        mask = cv2.flip(mask, 1)
+    return image, mask
+
+def random_rotate(image, mask):
+    angle = random.randint(-30, 30)
+    h, w = image.shape[:2]
+    M = cv2.getRotationMatrix2D((w // 2, h // 2), angle, 1.0)
+    image = cv2.warpAffine(image, M, (w, h), borderMode=cv2.BORDER_REFLECT)
+    mask = cv2.warpAffine(mask, M, (w, h), borderMode=cv2.BORDER_REFLECT)
+    return image, mask
+
+def adjust_brightness(image):
+    factor = 0.7 + random.uniform(0, 0.6)
+    return np.clip(image * factor, 0, 255).astype(np.uint8)
+```
+
+### Hyperparameter Settings
+
+```python
+IMG_HEIGHT = 256
+IMG_WIDTH = 256
+BATCH_SIZE = 2
+EPOCHS = 30
+AUGMENTATION_FACTOR = 10  # Number of augmented samples per image
+```
+
+---
+
+## Custom Model Integration
+
+To integrate your custom segmentation model:
+
+1. **Create Your Model File:**  
+   - Add your custom model file (e.g., `my_custom_model.py`) to the `segmentation_models/` folder.
+   - Ensure the file includes a function that builds and compiles the model:
+
+   ```python
+   def build_model(input_size=(256, 256, 3)):
+       # Define your model architecture
+       model = ...  # Custom model code here
+       model.compile(optimizer="adam", loss=dice_loss, metrics=[dice_coefficient])
+       return model
+   ```
+
+2. **Update the Notebook Configuration:**  
+   - Change the `MODEL_NAME` variable to your new model name:
+
+   ```python
+   MODEL_NAME = "my_custom_model"
+   ```
+
+3. **Dynamic Model Import:**
+
+   ```python
+   import importlib
+
+   def get_model(input_size=(IMG_HEIGHT, IMG_WIDTH, 3)):
+       model_module = importlib.import_module(f"segmentation_models.{MODEL_NAME}")
+       return model_module.build_model(input_size)
+   ```
+
+---
+
+## Usage
+
+### 1. Training the Model (`train.ipynb`)
+
+- **Configuration & File Paths:**  
+  Set the paths as shown in the [Configuration & File Paths](#configuration--file-paths) section.
+
+- **Data Augmentation:**  
+  The notebook includes functions to perform random flips, rotations, and brightness adjustments to expand your dataset.
+
+- **Training Process:**  
+  Run the notebook to train the segmentation model. Training progress (loss, Dice coefficient) is plotted to monitor performance.
+
+- **Saving the Model:**  
+  After training, the model is saved to the folder specified by `SAVE_MODEL_PATH`.
+
+### 2. Making Predictions (`Prediction.ipynb`)
+
+- **File Paths & Preprocessing:**  
+  Configure paths to the saved model and input images.
+
+- **Prediction Process:**  
+  The notebook loads the trained model, preprocesses input images (resizing, normalization), predicts segmentation masks, applies a threshold to generate binary masks, and resizes them back to the original dimensions.
+
+- **Saving Masks:**  
+  Predicted masks are saved in the `predicted_masks/` folder.
+
+---
+
+## Data Naming Conventions
+
+- **File Name Matching:**  
+  Ensure that images in `dataset/images/` and their corresponding masks in `dataset/masks/` have exactly the same filenames (including extensions) to enable correct pairing.
+
+- **Tips:**
+  - Avoid extra spaces or capitalization differences.
+  - If mask files have a different extension, adjust the code accordingly.
+
+---
+
+## Customization
+
+This pipeline is designed to be easily adapted:
+
+- **Model Architecture:**  
+  Switch or add segmentation models by placing your custom model file in `segmentation_models/` and updating the `MODEL_NAME` variable in both notebooks.
+
+- **Data Augmentation & Hyperparameters:**  
+  Modify the augmentation functions or adjust parameters like `IMG_HEIGHT`, `BATCH_SIZE`, and `EPOCHS` as needed.
+
+- **File Paths:**  
+  Update the various path variables if you change your file organization or storage method.
+
+---
+
+## Contributing
+
+We welcome contributions to improve this project! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on how to contribute.
+
+---
+
+## Changelog
+
+For a list of changes, updates, and release history, please refer to [CHANGELOG.md](CHANGELOG.md).
+
+---
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+```
+
+Place this `README.md` file in the **root directory** of your repository. It will serve as the main documentation page for your project on GitHub, ensuring that users and contributors have clear instructions on setup, usage, and contribution.
