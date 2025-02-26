@@ -29,7 +29,7 @@ Thank you for your interest in contributing to this project! Your contributions 
      ```
 
 6. **Submit a Pull Request:**
-   - Open a pull request from your branch to the main repository. Please follow the [Pull Request Template](PULL_REQUEST_TEMPLATE.md) guidelines.
+   - Open a pull request from your branch to the main repository. Please follow the [Pull Request Template](.github/PULL_REQUEST_TEMPLATE.md) guidelines.
 
 ## Code Style
 
@@ -39,7 +39,7 @@ Thank you for your interest in contributing to this project! Your contributions 
 
 ## Reporting Issues
 
-- Use the [Issue Template](ISSUE_TEMPLATE.md) to report bugs or suggest features.
+- Use the [Issue Template](.github/ISSUE_TEMPLATE.md) to report bugs or suggest features.
 - Provide as much detail as possible to help us understand the issue.
 
 ## Questions
